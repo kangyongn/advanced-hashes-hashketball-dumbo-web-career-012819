@@ -161,24 +161,15 @@ def player_stats(player_name)
 end
 
 def largest_shoe
-  largest_size = 0    # variable to keep track of largest shoe
-  largest_shoe_player = ""    # declare empty return string for player with largest shoe size
+  largest_size = 0
   
   game_hash.each do |location, team_data|
-    team_data.each do |attribute, data|
-      if attribute == :players
-        data.each do |member, stat|
-          stat.each do |info, num|
-            if info == :shoe
-              largest_shoe_player = member if num > largest_size
-            end
-          end
-        end
+    team_data[:players].each do |name, info|
+      if info[:shoe] > largest_size
+        largest_size
       end
     end
   end
-  
-  largest_shoe_player
 end
 
 def big_shoe_rebounds
